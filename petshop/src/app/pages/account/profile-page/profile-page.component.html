@@ -1,0 +1,29 @@
+<div class="uk-flex-center" uk-grid>
+    <div class="uk-width-1-3@m">
+        <br><br>
+        <app-loading *ngIf="busy"></app-loading>
+        <form [formGroup]="form" *ngIf="!busy">
+            <div class="uk-card uk-card-primary uk-card-body uk-box-shadow-small">
+                <h3 class="uk-card-title uk-text-center">Meu Perfil</h3>
+                <div class="uk-margin">
+                    <input class="uk-input uk-form-large" type="tex" placeholder="Nome" formControlName="name"
+                        [ngClass]="{'uk-form-danger': (!form.controls.name.valid && !form.controls.name.pristine)}">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input uk-form-large" type="email" formControlName="email" placeholder="E-mail"
+                        [ngClass]="{'uk-form-danger': (!form.controls.email.valid && !form.controls.email.pristine)}">
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input uk-form-large" type="text" formControlName="document">
+                </div>
+                <div class="uk-margin uk-text-right">
+                    <button href="/login" class="uk-button uk-button-default" [disabled]="form.invalid"
+                        (click)="submit()">Salvar</button>
+                </div>
+            </div>
+        </form>
+        <p class="uk-text-center" *ngIf="!busy">
+            <a [routerLink]="['/login']" class="uk-button uk-width-1-1 uk-button-large uk-margin">Cancelar</a>
+        </p>
+    </div>
+</div>
